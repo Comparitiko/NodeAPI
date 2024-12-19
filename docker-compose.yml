@@ -9,6 +9,8 @@ services:
     volumes:
       - ./public:/var/www/html/public
       - ./nginx/default.conf:/etc/nginx/nginx.conf:ro
+      - ./php/index.php:/var/www/html/index.php # Pasar el archivo index.php a la ruta /
+      - ./public/404.html:/var/www/html/404.html
     depends_on:
       - node
 
@@ -22,6 +24,20 @@ services:
       - "3000"
     depends_on:
       - mongo
+
+  # PHP
+  php:
+    container_name: php
+    build:
+      context: .
+      target: "php-fpm"
+    restart: always
+    expose:
+      - "9000"
+    volumes:
+      - ./php:/var/www/html
+    depends_on:
+      - node
 
   # MongoDB
   mongo:
