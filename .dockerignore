@@ -1,0 +1,12 @@
+.idea
+.gitignore
+.dockerignore
+docker-compose.dev.yml
+Dockerfile
+mongo
+node_modules
+bun.lockb
+pnpm-lock.yml
+package-lock.json
+yarn.lock
+*.sh

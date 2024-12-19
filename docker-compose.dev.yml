@@ -1,0 +1,42 @@
+services:
+  # Nginx
+  web:
+    container_name: nginx
+    image: nginx:1.27.1
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public:/var/www/public
+      - ./nginx/default.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - node
+
+  node:
+    container_name: nodejs
+    build:
+      context: .
+      target: "dev"
+    restart: always
+    command: npm run dev
+    expose:
+      - "3000"
+    volumes:
+      - ./src:/app/src
+      - ./.env:/app/.env
+      - ./package.json:/app/package.json
+    depends_on:
+      - mongo
+
+  # MongoDB
+  mongo:
+    container_name: mongodb
+    image: mongo:8.0.3
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo:/data/db
