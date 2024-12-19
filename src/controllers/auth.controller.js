@@ -1,4 +1,4 @@
-import Express from 'express'
+import { createToken } from '../helpers/jwt.js'
 
 export class AuthController {
   // Login method
@@ -6,7 +6,8 @@ export class AuthController {
 
   }
 
-  static register (req = Express.Request, res = Express.Response) {
-    res.json()
+  static register (req, res) {
+    const token = createToken(1, 'comparitiko')
+    res.json({ token })
   }
 }

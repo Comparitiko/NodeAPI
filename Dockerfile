@@ -16,6 +16,9 @@ CMD ["npm", "run dev"]
 FROM node:22.12.0-alpine AS prod
 WORKDIR /app
 COPY --from=prod-deps /app/node_modules ./node_modules
+COPY ./src ./src
+COPY ./.env ./.env
+COPY ./package.json ./package.json
 CMD ["node", "./src/index.js"]
 
 FROM php:8.4-fpm AS php-fpm

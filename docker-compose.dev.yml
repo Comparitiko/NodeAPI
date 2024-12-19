@@ -1,3 +1,4 @@
+# Docker compose file for development with hot reload on node.js container
 services:
   # Nginx
   web:
