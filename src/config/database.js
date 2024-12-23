@@ -3,8 +3,7 @@ import { connect } from 'mongoose'
 export const connectDB = async () => {
   try {
     await connect(process.env.MONGODB_URL, {
-      dbName: 'series',
-      useNewUrlParser: true,
+      dbName: 'series'
     })
     console.log('MongoDB connected')
   } catch (err) {

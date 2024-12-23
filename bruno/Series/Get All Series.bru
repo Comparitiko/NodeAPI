@@ -1,0 +1,16 @@
+meta {
+  name: Get All Series
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{API_URL}}/series
+  body: none
+  auth: none
+}
+
+params:query {
+  ~page: 0
+  ~offset: 0
+}

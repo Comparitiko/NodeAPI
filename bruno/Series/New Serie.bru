@@ -1,0 +1,25 @@
+meta {
+  name: New Serie
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{API_URL}}/series
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "Hola mundo",
+    "description": "sahdgagdad",
+    "userRating": 5,
+    "isMiniSerie": true,
+    "numOfSeasons": 3,
+    "year": 2020,
+    "genre": "Drama",
+    "totalRatingCount": 100,
+    "image": 5
+  }
+}

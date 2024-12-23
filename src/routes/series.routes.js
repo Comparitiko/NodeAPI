@@ -1,9 +1,13 @@
 import { Router } from 'express'
 import { SeriesController } from '../controllers/series.controller.js'
+import { auth } from '../middlewares/auth.js'
 
 // URL: /api/series
 
 const router = Router()
+
+// Protect the series routes with the auth middleware
+router.use(auth)
 
 // Handle all routes of the series
 router.get('/', SeriesController.getAll)
