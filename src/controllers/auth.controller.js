@@ -1,4 +1,4 @@
-import { createToken } from '../helpers/jwt.js'
+import { createToken } from '../services/jwt.js'
 
 export class AuthController {
   // Login method
