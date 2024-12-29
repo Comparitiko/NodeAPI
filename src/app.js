@@ -10,3 +10,7 @@ app.use(Express.json())
 app.disable('x-powered-by')
 
 app.use('/api', AppRouter)
+
+app.use((req, res) => {
+  res.status(404).json({ message: 'Not found' })
+})

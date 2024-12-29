@@ -1,7 +1,7 @@
 import { decodeToken } from '../services/jwt.js'
 
 export const auth = (req, res, next) => {
-  const token = req.headers.authorization
+  const token = req.headers.authorization.split(' ')[1]
 
   if (!token) {
     console.log('No token provided')
@@ -9,8 +9,8 @@ export const auth = (req, res, next) => {
   }
 
   try {
+    console.log({ token })
     req.user = decodeToken(token, process.env.JWT_SECRET)
-    console.log('User: ', req.user)
     next()
   } catch (err) {
     console.log('Error: ', err)
