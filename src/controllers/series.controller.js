@@ -3,7 +3,7 @@ import { Serie } from '../models/serie.js'
 export class SeriesController {
   static async getAll (req, res) {
     const series = await Serie.find()
-    res.json(series)
+    res.json({ series })
   }
 
   static async create (req, res) {
