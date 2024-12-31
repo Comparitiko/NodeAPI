@@ -14,7 +14,7 @@ router.get('/', SeriesController.getAll)
 router.post('/', SeriesController.create)
 router.put('/:id', SeriesController.updateById)
 router.get('/toprated', SeriesController.getTopRated)
-router.get('/genre/:genre', SeriesController.getOneByGenre)
+router.get('/genre/:genre', SeriesController.getAllByGenre)
 router.get('/:id', SeriesController.getOneById)
 router.delete('/:id', SeriesController.deleteOneById)
 

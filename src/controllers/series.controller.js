@@ -12,7 +12,7 @@ export class SeriesController {
 
     try {
       await serie.save()
-      res.status(201).json({
+      return res.status(201).json({
         message: 'Serie created successfully',
         serie
       })
@@ -23,23 +23,85 @@ export class SeriesController {
     }
   }
 
-  static updateById (req, res) {
-
+  // TODO hacer bien esto
+  static async updateById (req, res) {
+    const { id } = req.params
+    const { title, description, genre, rating } = req.body
+    // Update a serie by id
+    const serie = await Serie.findById(id)
+    try {
+      Serie.findByIdAndUpdate(id, { title, description, genre, rating })
+      res.json({ message: 'Serie updated successfully' })
+    } catch (err) {
+      res.status(500).json({
+        message: 'Internal server error'
+      })
+    }
   }
 
-  static getTopRated (req, res) {
-
+  static async getTopRated (req, res) {
+    // Get the top 10 rated series
+    try {
+      const seriesTopRated = await Serie.find().sort({ rating: -1 }).limit(10)
+      return res.json({ series: seriesTopRated })
+    } catch (err) {
+      return res.status(500).json({
+        message: 'Internal server error'
+      })
+    }
   }
 
-  static getOneByGenre (req, res) {
+  static async getAllByGenre (req, res) {
+    const { genre } = req.params
+    // Get all series by genre
+    try {
+      const seriesByGenre = await Serie.find({ genre })
 
+      return res.json({ series: seriesByGenre })
+    } catch (err) {
+      return res.status(500).json({
+        message: 'Internal server error'
+      })
+    }
   }
 
   static getOneById (req, res) {
+    const { id } = req.params
+    // Get a serie by id
+    try {
+      const serieById = Serie.findById(id)
 
+      if (!serieById) {
+        return res.status(404).json({
+          message: 'Serie not found'
+        })
+      }
+
+      res.json({ serie: serieById })
+    } catch (err) {
+      return res.status(500).json({
+        message: 'Internal server error'
+      })
+    }
   }
 
-  static deleteOneById (req, res) {
+  static async deleteOneById (req, res) {
+    const { id } = req.params
+    // Delete a serie by id
+    try {
+      const serie = await Serie.findByIdAndDelete(id)
 
+      if (!serie) {
+        return res.status(404).json({
+          message: 'Serie not found'
+        })
+      }
+
+      return res.json({ message: 'Serie deleted successfully' })
+    } catch (err) {
+      return res.status(500).json({
+        message: 'Internal server error'
+      })
+    }
   }
 }
