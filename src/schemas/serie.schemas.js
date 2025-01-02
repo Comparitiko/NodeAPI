@@ -1,23 +1,53 @@
 import { z } from 'zod'
 
 export const newSerieSchema = z.object({
-  name: z.string({
-    required_error: 'El nombre es obligatorio'
+  title: z.string({
+    required_error: 'The title is required',
+    invalid_type_error: 'The title must be a string'
   })
-    .min(1, { message: 'El nombre es obligatorio' }),
+    .min(2, { message: 'The title must be at least 2 characters long' }),
   description: z.string({
-    required_error: 'La descripción es obligatoria'
-  }).min(1, { message: 'La descripción es obligatoria' }),
-  genre: z.string().min(1, { message: 'El género es obligatorio' }),
-  rating: z.number().min(1, { message: 'La calificación es obligatoria' }),
-  image: z.string().min(1, { message: 'La imagen es obligatoria' }),
-  status: z.string().min(1, { message: 'El estado es obligatorio' })
+    required_error: 'The description is required',
+    invalid_type_error: 'The description must be a string'
+  }).min(2, { message: 'The description must be at least 2 characters long' }),
+  rating: z.number({
+    required_error: 'The rating is required',
+    invalid_type_error: 'The rating must be a number'
+  })
+    .min(1, { message: 'The rating must be at least 1' })
+    .max(5, { message: 'The rating cannot be bigger than 5' }),
+  isMiniSerie: z.boolean({
+    required_error: 'isMiniSerie is required',
+    invalid_type_error: 'isMiniSerie must be a boolean'
+  }),
+  numOfSeasons: z.number({
+    required_error: 'The number of seasons is required',
+    invalid_type_error: 'The number of seasons must be a number'
+  })
+    .min(1, { message: 'The number of seasons must be at least 1' }),
+  year: z.number({
+    required_error: 'The year is required',
+    invalid_type_error: 'The year must be a number'
+  })
+    .min(1900, { message: 'The year must be at least 1900' })
+    .max(new Date().getFullYear(), { message: 'The year cannot be bigger than the current year' }),
+  genre: z.string({
+    required_error: 'The genre is required',
+    invalid_type_error: 'The genre must be a string'
+  }).min(2, { message: 'The genre must be at least 2 characters long' }),
+  image: z.string({
+    required_error: 'The image is required',
+    invalid_type_error: 'The image must be a string'
+  }).url({
+    message: 'The image must be a valid URL'
+  })
 })
 
 export const updateSerieRateSchema = z.object({
   rating: z.number({
-    required_error: 'La puntuacion nueva es obligatoria'
+    required_error: 'The rating is required',
+    invalid_type_error: 'The rating must be a number'
   })
-    .min(1, { message: 'La calificación es obligatoria' })
-    .max(5, { message: 'La calificación no puede ser mayor a 5' })
+    .min(1, { message: 'The rating must be at least 1' })
+    .max(5, { message: 'The rating cannot be bigger than 5' })
 })

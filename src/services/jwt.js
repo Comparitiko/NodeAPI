@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 
-// Create a token with the userId and username as payload using the secret key, the expire time will be 1 hour
-export const createToken = (payload, expiresIn = Math.floor(Date.now() / 1000) + (60 * 60)) => {
+// Create a token with the userId and username as payload using the secret key, the expiry time will be 1 hour
+export const createToken = (payload, expiresIn = Math.floor(Date.now() + (60 * 60 * 1000))) => {
   return jwt.sign(
     payload,
     process.env.JWT_SECRET,

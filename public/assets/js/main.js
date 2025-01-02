@@ -9,6 +9,7 @@ const routes = {
 }
 
 function router () {
+  const app = document.querySelector('#app')
   const location = window.location
   const view = routes[location.pathname]
 

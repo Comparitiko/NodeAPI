@@ -23,7 +23,7 @@ export class AuthController {
 
       // Create JWT token
       const payload = { id: user._id.toString() }
-      const token = createToken(payload, '1h')
+      const token = createToken(payload)
 
       // Return response with user, token and message
       res.status(200).json({
@@ -65,7 +65,7 @@ export class AuthController {
 
     // Create JWT token
     const payload = { id: user._id }
-    const token = createToken(payload, '1h')
+    const token = createToken(payload)
 
     // Return response with user, token and message
     res.status(201).json({

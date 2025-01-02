@@ -13,7 +13,7 @@ const SerieSchema = new Schema({
     type: Number,
     required: true
   },
-  isMiniserie: {
+  isMiniSerie: {
     type: Boolean,
     required: true
   },
@@ -41,7 +41,22 @@ const SerieSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users',
     required: true
-  }
+  },
+
+  // Methods
+  toJSON: () => ({
+    id: this._id,
+    title: this.title,
+    description: this.description,
+    userRating: this.userRating,
+    isMiniSerie: this.isMiniSerie,
+    numOfSeasons: this.numOfSeasons,
+    year: this.year,
+    genre: this.genre,
+    totalRatingCount: this.totalRatingCount,
+    image: this.image,
+    userId: this.userId
+  })
 })
 
 export const Serie = model('series', SerieSchema)

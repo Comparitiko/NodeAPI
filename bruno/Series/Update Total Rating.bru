@@ -1,0 +1,17 @@
+meta {
+  name: Update Total Rating
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{API_URL}}/series/677723ce22194ae43a834a7e
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "rating": 2
+  }
+}
