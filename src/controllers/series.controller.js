@@ -8,7 +8,11 @@ export class SeriesController {
   }
 
   static async create (req, res) {
-    const { title, description, rating, isMiniSerie, numOfSeasons, year, genre, image } = req.body
+    let { title, description, rating, isMiniSerie, numOfSeasons, year, genres, image } = req.body
+
+    // Convert genres to lowercase
+    genres = genres.map((genre) => genre.toLowerCase())
+
     const userId = req.user.id
     const serie = await new Serie({
       title,
@@ -17,7 +21,7 @@ export class SeriesController {
       isMiniSerie,
       numOfSeasons,
       year,
-      genre,
+      genres,
       totalRatingCount: rating,
       image,
       userId
@@ -38,7 +42,7 @@ export class SeriesController {
 
   static async updateById (req, res) {
     const { id } = req.params
-    const { newRating } = req.body
+    const { rating } = req.body
 
     // Check if the id is a valid ObjectId
     if (!Types.ObjectId.isValid(id)) {
@@ -53,20 +57,13 @@ export class SeriesController {
       serie = await Serie.findById(id)
     } catch (err) {
       console.error(err)
-      return res.status(500).json({
-        message: 'Internal server error'
-      })
-    }
-
-    // Check if serie exists
-    if (!serie) {
       return res.status(404).json({
         message: 'Serie not found'
       })
     }
 
     // Update the serie rating
-    serie.totalRatingCount = serie.totalRatingCount + newRating
+    serie.totalRatingCount = serie.totalRatingCount + rating
 
     // Save the serie to the database
     try {
@@ -86,6 +83,13 @@ export class SeriesController {
     // Get the top 10 rated series
     try {
       const seriesTopRated = await Serie.find().sort({ rating: -1 }).limit(10)
+
+      if (seriesTopRated.length === 0) {
+        return res.status(404).json({
+          message: 'There are no series rated'
+        })
+      }
+
       return res.json({ series: seriesTopRated })
     } catch (err) {
       return res.status(500).json({
@@ -98,7 +102,14 @@ export class SeriesController {
     const { genre } = req.params
     // Get all series by genre
     try {
-      const seriesByGenre = await Serie.find({ genre })
+      // Filter by one genre
+      const seriesByGenre = await Serie.find({ genres: genre })
+
+      if (seriesByGenre.length === 0) {
+        return res.status(404).json({
+          message: 'There are no series with this genre'
+        })
+      }
 
       return res.json({ series: seriesByGenre })
     } catch (err) {
@@ -114,16 +125,10 @@ export class SeriesController {
     try {
       const serieById = await Serie.findById(id)
 
-      if (!serieById) {
-        return res.status(404).json({
-          message: 'Serie not found'
-        })
-      }
-
       res.json({ serie: serieById })
     } catch (err) {
-      return res.status(500).json({
-        message: 'Internal server error'
+      return res.status(404).json({
+        message: 'Serie not found'
       })
     }
   }
@@ -132,18 +137,12 @@ export class SeriesController {
     const { id } = req.params
     // Delete a serie by id
     try {
-      const serie = await Serie.findByIdAndDelete(id)
-
-      if (!serie) {
-        return res.status(404).json({
-          message: 'Serie not found'
-        })
-      }
+      await Serie.findByIdAndDelete(id)
 
       return res.json({ message: 'Serie deleted successfully' })
     } catch (err) {
-      return res.status(500).json({
-        message: 'Internal server error'
+      return res.status(404).json({
+        message: 'Serie not found'
       })
     }
   }

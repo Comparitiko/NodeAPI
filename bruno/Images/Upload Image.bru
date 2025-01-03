@@ -1,0 +1,15 @@
+meta {
+  name: Upload Image
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{API_URL}}/images/upload
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  image: @file(/home/comparitiko/Descargas/family-guy.webp)
+}

@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import AuthRouter from './auth.routes.js'
 import SeriesRouter from './series.routes.js'
+import ImagesRouter from './images.routes.js'
 
 // URL: /api
 
@@ -14,5 +15,6 @@ router.get('/', (req, res) => {
 // Set the routers
 router.use('/auth', AuthRouter)
 router.use('/series', SeriesRouter)
+router.use('/images', ImagesRouter)
 
 export default router

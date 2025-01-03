@@ -31,10 +31,16 @@ export const newSerieSchema = z.object({
   })
     .min(1900, { message: 'The year must be at least 1900' })
     .max(new Date().getFullYear(), { message: 'The year cannot be bigger than the current year' }),
-  genre: z.string({
-    required_error: 'The genre is required',
-    invalid_type_error: 'The genre must be a string'
-  }).min(2, { message: 'The genre must be at least 2 characters long' }),
+  genres: z.array(
+    z.string({
+      required_error: 'The genre is required',
+      invalid_type_error: 'The genre must be a string'
+    }).min(2, { message: 'A genre must be at least 2 characters long' }),
+    {
+      invalid_type_error: 'The genres must be an array of strings',
+      required_error: 'The genres are required'
+    }
+  ).min(1, { message: 'The genres array must contain at least 1' }),
   image: z.string({
     required_error: 'The image is required',
     invalid_type_error: 'The image must be a string'
