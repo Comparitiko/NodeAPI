@@ -2,8 +2,9 @@
 .env
 node_modules
 mongo
-bun.lockb
+backend/bun.lockb
 pnpm-lock.yml
 package-lock.json
 yarn.lock
+bun.lockb
 *.sh

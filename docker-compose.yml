@@ -3,14 +3,12 @@ services:
   # Nginx
   web:
     container_name: nginx
-    image: nginx:1.27.1
+    build:
+      context: .
+      target: "front-prod"
     restart: always
     ports:
       - "8080:80"
-    volumes:
-      - ./public:/var/www/html/public
-      - ./nginx/default.conf:/etc/nginx/nginx.conf:ro
-      - ./public/index.html:/var/www/html/index.html
     depends_on:
       - node
 
@@ -18,7 +16,7 @@ services:
     container_name: nodejs
     build:
       context: .
-      target: "prod"
+      target: "back-prod"
     restart: always
     expose:
       - "3000"

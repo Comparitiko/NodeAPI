@@ -4,8 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch ./src/index.js",
-    "lint": "standard --fix --verbose"
+    "dev": "node --watch src/index.js",
+    "lint": "../node_modules/.bin/standard --fix --verbose"
   },
   "keywords": [],
   "author": "",

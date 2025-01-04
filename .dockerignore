@@ -5,7 +5,7 @@ docker-compose.dev.yml
 Dockerfile
 mongo
 node_modules
-bun.lockb
+backend/bun.lockb
 pnpm-lock.yml
 package-lock.json
 yarn.lock

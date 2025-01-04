@@ -1,33 +1,19 @@
 # Docker compose file for development with hot reload on node.js container
 services:
-  # Nginx
-  web:
-    container_name: nginx
-    image: nginx:1.27.1
-    restart: always
-    ports:
-      - "8080:80"
-    volumes:
-      - ./public/assets:/var/www/html/public
-      - ./nginx/default.conf:/etc/nginx/nginx.conf:ro
-      - ./public/index.html:/var/www/html/index.html
-    depends_on:
-      - node
-
   # Node.js
   node:
     container_name: nodejs
     build:
       context: .
-      target: "dev"
+      target: "back-dev"
     restart: always
     command: npm run dev
-    expose:
-      - "3000"
+    ports:
+      - "3000:3000"
     volumes:
-      - ./src:/app/src
-      - ./.env:/app/.env
-      - ./package.json:/app/package.json
+      - ./backend/src:/app/src
+      - .env:/app/.env
+      - ./backend/package.json:/app/package.json
     depends_on:
       - mongo
 
