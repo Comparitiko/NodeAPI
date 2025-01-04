@@ -3,7 +3,7 @@ import { compareSync, hashSync } from 'bcrypt'
 import { createToken } from '../services/jwt.js'
 
 export class AuthController {
-  // Login method
+  // LoginPage method
   static async login (req, res) {
     const { email, password } = req.body
 
@@ -27,7 +27,7 @@ export class AuthController {
 
       // Return response with user, token and message
       res.status(200).json({
-        message: 'Login successful',
+        message: 'LoginPage successful',
         token,
         user: { username: user.username, email: user.email }
       })
