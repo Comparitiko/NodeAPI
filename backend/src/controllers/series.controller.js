@@ -2,6 +2,27 @@ import { Serie } from '../models/serie.js'
 import { Types } from 'mongoose'
 
 export class SeriesController {
+  static async getAllGenres (req, res) {
+    try {
+      const genres = await Serie.distinct('genres')
+
+      if (genres.length === 0) {
+        return res.status(404).json({
+          message: 'There are no genres'
+        })
+      }
+
+      res.json({
+        message: 'Genres retrieved successfully',
+        genres
+      })
+    } catch (err) {
+      return res.status(500).json({
+        message: 'Internal server error'
+      })
+    }
+  }
+
   static async getAll (req, res) {
     const series = await Serie.find()
     res.json({ series })
@@ -145,5 +166,11 @@ export class SeriesController {
         message: 'Serie not found'
       })
     }
+  }
+
+  catch (err) {
+    res.status(500).json({
+      message: 'Internal server error'
+    })
   }
 }

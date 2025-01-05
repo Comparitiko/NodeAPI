@@ -27,7 +27,7 @@ export class AuthController {
 
       // Return response with user, token and message
       res.status(200).json({
-        message: 'LoginPage successful',
+        message: 'Login successful',
         token,
         user: { username: user.username, email: user.email }
       })
@@ -76,8 +76,11 @@ export class AuthController {
   }
 
   static async refresh (req, res) {
-    const newToken = createToken({ id: req.user._id }, Math.floor(Date.now() + (7 * 24 * 60 * 60 * 1000))) // Create a new token with the expiry time of 7 days
+    // Create a new token with the expiry time of 7 days
+    const payload = { id: req.user._id }
+    const newToken = createToken(payload, Math.floor(Date.now() + (7 * 24 * 60 * 60 * 1000))) // Create a new token with the expiry time of 7 days
 
+    // Return response with new token and user
     res.status(200).json({
       message: 'Refresh token successful',
       token: newToken,

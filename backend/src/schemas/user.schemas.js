@@ -36,7 +36,12 @@ export const registerSchema = z.object({
     required_error: 'The confirm password is required',
     invalid_type_error: 'The confirm password must be a string'
   })
-    .refine((value) => value === registerSchema.password.parse(value), {
-      message: 'The confirm password does not match the password'
+}).superRefine(({ confirmPassword, password }, ctx) => {
+  if (confirmPassword !== password) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'The passwords do not match',
+      path: ['confirmPassword']
     })
+  }
 })
