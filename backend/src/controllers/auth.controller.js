@@ -80,7 +80,8 @@ export class AuthController {
 
     res.status(200).json({
       message: 'Refresh token successful',
-      token: newToken
+      token: newToken,
+      user: { username: req.user.username, email: req.user.email }
     })
   }
 }
