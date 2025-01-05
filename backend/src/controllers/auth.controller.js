@@ -74,4 +74,13 @@ export class AuthController {
       user: { username, email }
     })
   }
+
+  static async refresh (req, res) {
+    const newToken = createToken({ id: req.user._id }, Math.floor(Date.now() + (7 * 24 * 60 * 60 * 1000))) // Create a new token with the expiry time of 7 days
+
+    res.status(200).json({
+      message: 'Refresh token successful',
+      token: newToken
+    })
+  }
 }

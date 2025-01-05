@@ -10,5 +10,5 @@ await connectDB()
 const app = setupApp()
 
 app.listen(3000, () => {
-  console.log(`Server working on ${process.env.HOST_URL}/api`)
+  console.log(`Server working on ${process.env.API_URL}/api`)
 })
