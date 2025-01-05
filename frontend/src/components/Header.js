@@ -1,5 +1,3 @@
-// New component
-
 const Header = () => {
   const header = document.createElement('header')
   header.innerHTML = `
