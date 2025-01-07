@@ -3,11 +3,14 @@ import { Error404Page } from '../pages/Error404Page.js'
 
 import { userService } from '../services/userService.js'
 import { RegisterPage } from '../pages/RegisterPage.js'
+import { SeriesPage } from '../pages/SeriesPage.js'
 
 export const ROUTES = {
   '/': {
     title: userService.isAuthenticated() ? 'Inicio | Series API' : 'Inicio de sesión | Series API',
-    render: () => userService.isAuthenticated() ? LoginPage.render() : LoginPage.render(),
+    render: () => userService.isAuthenticated()
+      ? SeriesPage.render()
+      : LoginPage.render(),
     requiresAuth: userService.isAuthenticated()
   },
   '/login': {
@@ -22,7 +25,7 @@ export const ROUTES = {
   },
   '/series': {
     title: 'Series | Series API',
-    render: () => LoginPage.render(),
+    render: () => SeriesPage.render(),
     requiresAuth: true
   },
   '/series/toprated': {
@@ -31,7 +34,7 @@ export const ROUTES = {
     requiresAuth: true
   },
   '/series/genre/:genre': {
-    title: 'Series de :genre | Series API',
+    title: 'Series | Series API',
     render: () => LoginPage.render(),
     requiresAuth: true
   },

@@ -18,10 +18,15 @@ export const userService = {
     localStorage.setItem('user', JSON.stringify(user))
   },
 
-  async login (email, password) {
+  deleteUser () {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+  },
+
+  async login ({ email, password }) {
     const body = JSON.stringify({
-      email: email.value,
-      password: password.value
+      email,
+      password
     })
 
     try {
@@ -36,14 +41,14 @@ export const userService = {
       if (res.ok) {
         const data = await res.json()
         this.setUser(data.token, data.user)
-        return { ok: true, ...data }
+        return { ok: true, data }
       }
 
       if (res.status === 400) {
         const data = await res.json()
         return { ok: false, ...data }
       }
-      
+
     } catch (_e) {
       return { ok: false, message: 'Internal server error' }
     }
@@ -100,18 +105,17 @@ export const userService = {
       if (res.ok) {
         // Parse the response as JSON and set the token and user in local storage
         const data = await res.json()
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('user', data.user)
+        this.setUser(data.token, data.user)
       } else {
         // If the response is not ok, clear the local storage
-        localStorage.clear()
+        this.deleteUser()
       }
     } catch (err) {
-      localStorage.clear()
+      this.deleteUser()
     }
   },
 
   logout () {
-    localStorage.clear()
+    this.deleteUser()
   }
 }

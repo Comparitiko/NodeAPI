@@ -12,7 +12,14 @@ export const serieService = {
           'Authorization': `Bearer ${token}`
         },
       })
-      return await res.json()
+
+      if (res.ok) {
+        return await res.json()
+      }
+
+      if (res.status === 401) return { ok: false, message: 'Unauthorized' }
+
+      return { ok: false, message: 'Internal server error' }
     } catch (_e) {
       return { ok: false, message: 'Internal server error' }
     }

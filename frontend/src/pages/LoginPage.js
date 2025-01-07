@@ -1,6 +1,8 @@
 import { $ } from '../utils/selector.js'
-import { userService } from '../services/userService.js'
 import { EVENTS } from '../consts/events.js'
+import { loginSchema } from '../schemas/user.schemas.js'
+import { userService } from '../services/userService.js'
+import { Router } from '../router/Router.js'
 
 export class LoginPage {
 
@@ -14,7 +16,7 @@ export class LoginPage {
       <main class="bg-gray-900 text-gray-100 min-h-screen flex items-center justify-center">
         <div class="bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-md">
         <!-- Formulario de Login -->
-        <form id="loginForm" class="mb-8">
+        <form class="mb-8">
             <h2 class="text-2xl font-bold mb-6 text-center text-gray-100">Iniciar Sesión</h2>
             <div class="mb-4">
                 <label for="email" class="block text-gray-300 text-sm font-bold mb-2">Correo electrónico</label>
@@ -47,7 +49,38 @@ export class LoginPage {
       const email = form.querySelector('#email')
       const password = form.querySelector('#password')
 
-      const res = await userService.login(email.value, password.value)
+      const body = {
+        email: email.value,
+        password: password.value
+      }
+
+      // Check if the form is valid
+      const { success, data, error } = loginSchema.safeParse(body)
+
+      // If the form is valid, try to log in the user
+      if (success) {
+        const res = await userService.login(body)
+        if (res.ok) {
+          console.log(res)
+
+          Router.navigateTo('/')
+          Router.init()
+        }
+      }
+
+      // If the form is not valid, set the errors
+
+      LoginPage.#setErrors(error.errors)
+    })
+  }
+
+  static #setErrors (errors) {
+    console.log(errors)
+    errors.forEach((error) => {
+      const paragraph = document.createElement('p')
+      paragraph.classList.add('text-red-500')
+      paragraph.innerText = error.message
+      LoginPage.#rootElement.querySelector('form').appendChild(paragraph)
     })
   }
 }

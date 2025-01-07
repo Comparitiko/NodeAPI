@@ -19,7 +19,6 @@ export const auth = async (req, res, next) => {
   try {
     tokenInfo = decodeToken(token, process.env.JWT_SECRET)
   } catch (err) {
-    console.error(err)
     return res.status(401).json({ message: 'Invalid token' })
   }
 

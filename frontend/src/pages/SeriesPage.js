@@ -1,47 +1,48 @@
 import { $ } from '../utils/selector.js'
-import { ENVIRONMENT } from '../consts/environment.js'
+import { serieService } from '../services/serieService.js'
+import SerieCard from '../components/SerieCard.js'
+import Header from '../components/Header.js'
 
 export class SeriesPage {
 
   static #rootElement
 
-  static render () {
+  static async render () {
 
     SeriesPage.#rootElement = $('div')
 
+    const header = Header()
+
     SeriesPage.#rootElement.innerHTML = `
-        <main class="flex flex-col items-center justify-center h-screen">
-            <div id="series-list" class="flex flex-col items-center justify-center w-full">
+        
+        <main class="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-gray-100">
+            <div id="series-list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 py-5">
                 
             </div>
         </main>
         `
+
+    SeriesPage.#rootElement.prepend(header)
+
+    await SeriesPage.#printSeries()
     SeriesPage.#setupEventListeners()
   }
 
-  static #setupEventListeners () {
-    const form = SeriesPage.#rootElement.querySelector('form')
+  static async #printSeries () {
+    const seriesList = SeriesPage.#rootElement.querySelector('#series-list')
 
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault()
+    const data = await serieService.getAll()
 
-      const email = form.querySelector('#email')
-      const password = form.querySelector('#password')
+    let seriesCards = ''
 
-      const body = JSON.stringify({
-        email: email.value,
-        password: password.value
-      })
-
-      const res = await fetch(`${ENVIRONMENT.API_HOST}/api/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: body
-      })
-
-      console.log(res)
+    data.series.forEach((serie) => {
+      seriesCards += SerieCard(serie)
     })
+
+    seriesList.innerHTML = seriesCards
+  }
+
+  static #setupEventListeners () {
+
   }
 }

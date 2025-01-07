@@ -1,5 +1,5 @@
-import { Router } from './components/Router'
 import { userService } from './services/userService.js'
+import { Router } from './router/Router.js'
 
 export const App = async () => {
   // Check if user is authenticated and refresh token if it is

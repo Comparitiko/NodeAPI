@@ -79,7 +79,6 @@ export class AuthController {
     const payload = { id: req.user.id }
 
     // Create a new token with the expiry time of 7 days
-    console.log(payload)
     const newToken = createToken(payload, (Math.floor(Date.now() + (7 * 24 * 60 * 60 * 1000))))
 
     // Return response with new token and user
