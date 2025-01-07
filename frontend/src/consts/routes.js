@@ -1,11 +1,11 @@
 import { LoginPage } from '../pages/LoginPage.js'
-import { Router } from '../components/Router.js'
+import { userService } from '../services/userService.js'
 
 export const ROUTES = {
   '/': {
-    title: Router.isAuthenticated() ? 'Inicio | Series API' : 'Inicio de sesión | Series API',
-    render: () => Router.isAuthenticated() ? LoginPage.render() : LoginPage.render(),
-    requiresAuth: Router.isAuthenticated()
+    title: userService.isAuthenticated() ? 'Inicio | Series API' : 'Inicio de sesión | Series API',
+    render: () => userService.isAuthenticated() ? LoginPage.render() : LoginPage.render(),
+    requiresAuth: userService.isAuthenticated()
   },
   '/login': {
     title: 'Inicio de sesión | Series API',
@@ -40,6 +40,6 @@ export const ROUTES = {
   '404': {
     title: 'Página no encontrada | Series API',
     render: () => LoginPage.render(),
-    requiresAuth: Router.isAuthenticated()
+    requiresAuth: userService.isAuthenticated()
   }
 }

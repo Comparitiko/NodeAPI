@@ -1,4 +1,5 @@
 export const EVENTS = {
-  DOMCONTENTLOADED: "DOMContentLoaded",
-  POPSTATE: "popstate"
+  DOMCONTENTLOADED: 'DOMContentLoaded',
+  CLICK: 'click',
+  SUBMIT: 'submit',
 }

@@ -1,24 +1,28 @@
 import { $ } from '../utils/selector.js'
-import { ENVIRONMENT } from '../consts/environment.js'
-import { Router } from '../components/Router.js'
+import { userService } from '../services/userService.js'
 
 export class LoginPage {
 
   static #rootElement
 
-  static render (errors = []) {
+  static render () {
 
     LoginPage.#rootElement = $('div')
 
     LoginPage.#rootElement.innerHTML = `
         <main class="flex flex-col items-center justify-center h-screen">
-            ${errors && `<div class="alert alert-error">${errors.map(error => `<p>${error.message}</p>`).join('')}</div>`}
             <div class="flex flex-col items-center justify-center w-full">
-                <h1 class="text-3xl font-bold">Login</h1>
-                <form class="flex flex-col items-center justify-center w-full">
-                    <input type="text" placeholder="Email" class="w-full mt-2 p-2 border-2 border-gray-400 rounded-md">
-                    <input type="password" placeholder="Password" class="w-full mt-2 p-2 border-2 border-gray-400 rounded-md">
-                    <button class="w-full mt-2 p-2 border-2 border-gray-400 rounded-md">Login</button>
+                <h1 class="text-3xl font-bold ">Iniciar sesión</h1>
+                <form class="max-w-sm mx-auto">
+                  <div class="mb-5">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tu Email</label>
+                    <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
+                  </div>
+                  <div class="mb-5">
+                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tu contraseña</label>
+                    <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                  </div>
+                  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                 </form>
             </div>
         </main>
@@ -32,30 +36,10 @@ export class LoginPage {
     form.addEventListener('submit', async (event) => {
       event.preventDefault()
 
-      const email = form.querySelector('#email')
-      const password = form.querySelector('#password')
+      const email = form.querySelector('#email').value
+      const password = form.querySelector('#password').value
 
-      const body = JSON.stringify({
-        email: email.value,
-        password: password.value
-      })
-
-      const res = await fetch(`${ENVIRONMENT.API_HOST}/api/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: body
-      })
-
-      if (res.ok) {
-        const data = await res.json()
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('user', data.user)
-        Router.init()
-      }
-
-      console.log(res)
+      const res = await userService.login(email, password)
     })
   }
 }

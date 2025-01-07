@@ -1,5 +1,6 @@
 import { ROUTES } from '../consts/routes.js'
 import { match } from 'path-to-regexp'
+import { userService } from '../services/userService.js'
 
 export class Router {
   static init () {
@@ -7,14 +8,12 @@ export class Router {
     const { route, params } = Router.#matchRoute(pathname)
 
     // Verificar si la ruta requiere autenticación
-    if (route.requiresAuth && !Router.isAuthenticated()) {
+    if (route.requiresAuth && !userService.isAuthenticated()) {
       // Si no está autenticado, redirigir al login
-      window.location.href = '/login'
-      return
-    } else if (!route.requiresAuth && Router.isAuthenticated()) {
+      return window.location.href = '/login'
+    } else if (!route.requiresAuth && userService.isAuthenticated()) {
       // Si está autenticado, redirigir a la ruta sin autenticación
-      window.location.href = '/series'
-      return
+      return window.location.href = '/series'
     }
 
     document.title = route.title
@@ -22,11 +21,6 @@ export class Router {
 
     Router.#interceptLinks()
   }
-
-  static isAuthenticated () {
-    const token = localStorage.getItem('token')
-    return !!token
-  };
 
   static #interceptLinks () {
     document.querySelectorAll('a[data-router]').forEach((link) => {
