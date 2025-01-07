@@ -105,12 +105,6 @@ export class SeriesController {
     try {
       const seriesTopRated = await Serie.find().sort({ rating: -1 }).limit(10)
 
-      if (seriesTopRated.length === 0) {
-        return res.status(404).json({
-          message: 'There are no series rated'
-        })
-      }
-
       return res.json({ series: seriesTopRated })
     } catch (err) {
       return res.status(500).json({
@@ -125,12 +119,6 @@ export class SeriesController {
     try {
       // Filter by one genre
       const seriesByGenre = await Serie.find({ genres: genre })
-
-      if (seriesByGenre.length === 0) {
-        return res.status(404).json({
-          message: 'There are no series with this genre'
-        })
-      }
 
       return res.json({ series: seriesByGenre })
     } catch (err) {
@@ -166,11 +154,5 @@ export class SeriesController {
         message: 'Serie not found'
       })
     }
-  }
-
-  catch (err) {
-    res.status(500).json({
-      message: 'Internal server error'
-    })
   }
 }
