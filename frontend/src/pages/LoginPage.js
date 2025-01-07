@@ -1,5 +1,6 @@
 import { $ } from '../utils/selector.js'
 import { userService } from '../services/userService.js'
+import { EVENTS } from '../consts/events.js'
 
 export class LoginPage {
 
@@ -10,36 +11,43 @@ export class LoginPage {
     LoginPage.#rootElement = $('div')
 
     LoginPage.#rootElement.innerHTML = `
-        <main class="flex flex-col items-center justify-center h-screen">
-            <div class="flex flex-col items-center justify-center w-full">
-                <h1 class="text-3xl font-bold ">Iniciar sesión</h1>
-                <form class="max-w-sm mx-auto">
-                  <div class="mb-5">
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tu Email</label>
-                    <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
-                  </div>
-                  <div class="mb-5">
-                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tu contraseña</label>
-                    <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                  </div>
-                  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-                </form>
+      <main class="bg-gray-900 text-gray-100 min-h-screen flex items-center justify-center">
+        <div class="bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-md">
+        <!-- Formulario de Login -->
+        <form id="loginForm" class="mb-8">
+            <h2 class="text-2xl font-bold mb-6 text-center text-gray-100">Iniciar Sesión</h2>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-300 text-sm font-bold mb-2">Correo electrónico</label>
+                <input type="email" id="email" name="email" required class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-100">
             </div>
-        </main>
-        `
+            <div class="mb-6">
+                <label for="password" class="block text-gray-300 text-sm font-bold mb-2">Contraseña</label>
+                <input type="password" id="password" name="password" required class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-100">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                Iniciar Sesión
+            </button>
+            <p class="mt-4 text-center text-sm text-gray-400">
+                ¿No tienes una cuenta? 
+                <a data-router href="/register" class="text-blue-500 hover:text-blue-400">Regístrate aquí</a>
+            </p>
+        </form>
+        </div>
+      </main>
+    `
     LoginPage.#setupEventListeners()
   }
 
   static #setupEventListeners () {
     const form = LoginPage.#rootElement.querySelector('form')
 
-    form.addEventListener('submit', async (event) => {
+    form.addEventListener(EVENTS.SUBMIT, async (event) => {
       event.preventDefault()
 
-      const email = form.querySelector('#email').value
-      const password = form.querySelector('#password').value
+      const email = form.querySelector('#email')
+      const password = form.querySelector('#password')
 
-      const res = await userService.login(email, password)
+      const res = await userService.login(email.value, password.value)
     })
   }
 }

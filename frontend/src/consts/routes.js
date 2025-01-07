@@ -1,5 +1,8 @@
 import { LoginPage } from '../pages/LoginPage.js'
+import { Error404Page } from '../pages/Error404Page.js'
+
 import { userService } from '../services/userService.js'
+import { RegisterPage } from '../pages/RegisterPage.js'
 
 export const ROUTES = {
   '/': {
@@ -14,7 +17,7 @@ export const ROUTES = {
   },
   '/register': {
     title: 'Registro | Series API',
-    render: () => LoginPage.render(),
+    render: () => RegisterPage.render(),
     requiresAuth: false
   },
   '/series': {
@@ -39,7 +42,7 @@ export const ROUTES = {
   },
   '404': {
     title: 'Página no encontrada | Series API',
-    render: () => LoginPage.render(),
+    render: () => Error404Page.render(),
     requiresAuth: userService.isAuthenticated()
   }
 }
