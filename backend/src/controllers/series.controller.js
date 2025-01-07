@@ -45,7 +45,8 @@ export class SeriesController {
       genres,
       totalRatingCount: rating,
       image,
-      userId
+      userId,
+      totalVotes: 1
     })
 
     try {
@@ -78,13 +79,21 @@ export class SeriesController {
       serie = await Serie.findById(id)
     } catch (err) {
       console.error(err)
+      return res.status(500).json({
+        message: 'Internal server error'
+      })
+    }
+
+    if (!serie) {
       return res.status(404).json({
         message: 'Serie not found'
       })
     }
 
-    // Update the serie rating
+    // Update the serie rating and increment the total votes by 1
+    console.log(serie)
     serie.totalRatingCount = serie.totalRatingCount + rating
+    serie.totalVotes = serie.totalVotes + 1
 
     // Save the serie to the database
     try {
@@ -134,10 +143,16 @@ export class SeriesController {
     try {
       const serieById = await Serie.findById(id)
 
+      if (!serieById) {
+        return res.status(404).json({
+          message: 'Serie not found'
+        })
+      }
+
       res.json({ serie: serieById })
     } catch (err) {
-      return res.status(404).json({
-        message: 'Serie not found'
+      return res.status(500).json({
+        message: 'Internal server error'
       })
     }
   }
@@ -146,12 +161,18 @@ export class SeriesController {
     const { id } = req.params
     // Delete a serie by id
     try {
-      await Serie.findByIdAndDelete(id)
+      const serie = await Serie.findByIdAndDelete(id)
+
+      if (!serie) {
+        return res.status(404).json({
+          message: 'Serie not found'
+        })
+      }
 
       return res.json({ message: 'Serie deleted successfully' })
     } catch (err) {
-      return res.status(404).json({
-        message: 'Serie not found'
+      return res.status(500).json({
+        message: 'Internal server error'
       })
     }
   }

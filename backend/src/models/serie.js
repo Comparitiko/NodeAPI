@@ -37,6 +37,11 @@ const SerieSchema = new Schema({
     type: String,
     required: true
   },
+  totalVotes: {
+    type: Number,
+    default: 0,
+    required: true
+  },
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'users',
