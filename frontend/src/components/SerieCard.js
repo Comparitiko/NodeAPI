@@ -3,12 +3,14 @@
 import GenreBadge from './GenreBadge.js'
 
 const SerieCard = (serie) => {
-  console.log(serie.genres)
 
-  const genres = serie.genres.map((genre) => GenreBadge(genre)).join('')
+  const card = document.createElement('a')
+  card.setAttribute('data-router', "")
+  card.setAttribute('href', `/series/${serie.id}`)
+  card.className = 'card fit-content hover:bg-gray-800'
 
-  const card = `
-    <article class="card">
+  card.innerHTML = `
+      <article>
       <img class="w-full h-96 object-contain" src="${serie.image}" alt="Serie ${
     serie.title
   } Poster">
@@ -33,12 +35,19 @@ const SerieCard = (serie) => {
     serie.totalRatingCount / serie.totalVotes
   ).toFixed(2)} / 5</span>
         </div>
-        <div class="px-1 py-1">
-        ${genres}
-      </div>
+        <div class="px-1 py-1 genres-container">
+        
+        </div>
       </div>
     </article>
     `
+
+  const genresContainer = card.querySelector('.genres-container')
+
+  serie.genres.forEach((genre) => {
+    genresContainer.appendChild(GenreBadge(genre))
+  })
+
   return card
 }
 

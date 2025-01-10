@@ -64,7 +64,6 @@ export class LoginPage {
           console.log(res)
 
           Router.navigateTo('/')
-          Router.init()
         }
       }
 

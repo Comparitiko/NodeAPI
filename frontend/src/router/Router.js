@@ -1,6 +1,8 @@
 import { ROUTES } from './routes.js'
 import { match } from 'path-to-regexp'
 import { userService } from '../services/userService.js'
+import { $$ } from '../utils/selector.js'
+import { EVENTS } from '../consts/events.js'
 
 export class Router {
   static init () {
@@ -10,13 +12,11 @@ export class Router {
     // Check if the user is not authenticated and the route requires authentication
     if (route.requiresAuth && !userService.isAuthenticated()) {
       // If the user is not authenticated, redirect to the login page
-      window.location.href = '/login'
-      Router.init()
+      Router.navigateTo('/login')
       return
     } else if (!route.requiresAuth && userService.isAuthenticated()) {
       // If the user is authenticated and the route does not require authentication (login page), redirect to the series page
-      window.location.href = '/series'
-      Router.init()
+      Router.navigateTo('/series')
       return
     }
 
@@ -32,8 +32,13 @@ export class Router {
 
   // Intercept the al the anchors with the data-router attribute to navigate to the corresponding page when clicked
   static #interceptLinks () {
-    document.querySelectorAll('a[data-router]').forEach((link) => {
-      link.addEventListener('click', (event) => {
+    const links = $$('a[data-router]')
+
+    // If there are no links with the data-router attribute, not try to intercept them
+    if (!links || links.length === 0) return
+
+    links.forEach((link) => {
+      link.addEventListener(EVENTS.CLICK, (event) => {
         event.preventDefault()
         const href = link.getAttribute('href') || '/'
         Router.navigateTo(href)
