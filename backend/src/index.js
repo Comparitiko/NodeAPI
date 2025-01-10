@@ -7,6 +7,7 @@ process.loadEnvFile('.env')
 // Connect to MongoDB
 await connectDB()
 
+// Setup the app with the routes
 const app = setupApp()
 
 app.listen(3000, () => {

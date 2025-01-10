@@ -1,5 +1,6 @@
 import { PutObjectCommand } from '@aws-sdk/client-s3'
 import { R2Client } from '../config/r2.js'
+import { v4 as uuidv4 } from 'uuid'
 
 export class ImageController {
   static async upload (req, res) {
@@ -14,9 +15,14 @@ export class ImageController {
       return res.status(400).send('Only image files are allowed.')
     }
 
+    const fileExt = file.originalname.split('.').pop()
+
+    // Generate a unique file name
+    const fileName = `${uuidv4()}.${fileExt}`
+
     const uploadParams = {
       Bucket: process.env.R2_BUCKET_NAME, // Name of the bucket
-      Key: file.originalname, // Name of the file in the bucket
+      Key: fileName, // Name of the file in the bucket
       Body: file.buffer, // File content
       ContentType: file.mimetype // Mime type of the file
     }
@@ -29,7 +35,7 @@ export class ImageController {
 
       res.status(200).json({
         message: 'File uploaded successfully',
-        url: `https://${R2DOMAIN}/${file.originalname}`
+        url: `https://${R2DOMAIN}/${fileName}`
       })
     } catch (error) {
       console.error(error)
