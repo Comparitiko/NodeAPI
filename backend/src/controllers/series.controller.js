@@ -1,28 +1,7 @@
-import { Serie } from '../models/serie.js'
 import { Types } from 'mongoose'
+import { Serie } from '../models/serie.js'
 
 export class SeriesController {
-  static async getAllGenres (req, res) {
-    try {
-      const genres = await Serie.distinct('genres')
-
-      if (genres.length === 0) {
-        return res.status(404).json({
-          message: 'There are no genres'
-        })
-      }
-
-      res.json({
-        message: 'Genres retrieved successfully',
-        genres
-      })
-    } catch (err) {
-      return res.status(500).json({
-        message: 'Internal server error'
-      })
-    }
-  }
-
   static async getAll (req, res) {
     const series = await Serie.find()
     res.json({ series })
@@ -91,7 +70,6 @@ export class SeriesController {
     }
 
     // Update the serie rating and increment the total votes by 1
-    console.log(serie)
     serie.totalRatingCount = serie.totalRatingCount + rating
     serie.totalVotes = serie.totalVotes + 1
 

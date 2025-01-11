@@ -1,6 +1,5 @@
 import { $ } from '../utils/selector.js'
 import { EVENTS } from '../consts/events.js'
-import { loginSchema } from '../schemas/user.schemas.js'
 import { userService } from '../services/userService.js'
 import { Router } from '../router/Router.js'
 
@@ -54,32 +53,10 @@ export class LoginPage {
         password: password.value
       }
 
-      // Check if the form is valid
-      const { success, data, error } = loginSchema.safeParse(body)
-
-      // If the form is valid, try to log in the user
-      if (success) {
-        const res = await userService.login(body)
-        if (res.ok) {
-          console.log(res)
-
-          Router.navigateTo('/')
-        }
+      const res = await userService.login(body)
+      if (res.ok) {
+        Router.navigateTo('/')
       }
-
-      // If the form is not valid, set the errors
-
-      LoginPage.#setErrors(error.errors)
-    })
-  }
-
-  static #setErrors (errors) {
-    console.log(errors)
-    errors.forEach((error) => {
-      const paragraph = document.createElement('p')
-      paragraph.classList.add('text-red-500')
-      paragraph.innerText = error.message
-      LoginPage.#rootElement.querySelector('form').appendChild(paragraph)
     })
   }
 }

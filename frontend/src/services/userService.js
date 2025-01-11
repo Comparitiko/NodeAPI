@@ -74,14 +74,14 @@ export const userService = {
       if (!res.ok) {
         if (res.status === 400) {
           const data = await res.json()
-          return { ok: false, ...data }
+          return { ok: false, message: {...data} }
         }
       }
 
       const data = await res.json()
       this.setUser(data.token, data.user)
 
-      return { ok: true, ...data }
+      return { ok: true, message: {...data} }
     } catch (_e) {
       return { ok: false, message: 'Internal server error' }
     }

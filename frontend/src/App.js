@@ -5,5 +5,6 @@ export const App = async () => {
   // Check if user is authenticated and refresh token if it is
   if (userService.isAuthenticated()) await userService.refreshToken()
 
+  // Init the router
   Router.init()
 }

@@ -4,6 +4,7 @@ import { Error404Page } from '../pages/Error404Page.js'
 import { userService } from '../services/userService.js'
 import { RegisterPage } from '../pages/RegisterPage.js'
 import { SeriesPage } from '../pages/SeriesPage.js'
+import {SeriePage} from "../pages/SeriePage.js";
 
 export const ROUTES = {
   '/': {
@@ -40,7 +41,7 @@ export const ROUTES = {
   },
   '/series/:id': {
     title: 'Series | Series API',
-    render: () => LoginPage.render(),
+    render: (params) => SeriePage.render(params),
     requiresAuth: true
   },
   '404': {

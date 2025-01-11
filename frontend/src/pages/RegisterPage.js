@@ -1,6 +1,7 @@
 import { $ } from '../utils/selector.js'
 import { userService } from '../services/userService.js'
 import { EVENTS } from '../consts/events.js'
+import {Router} from "../router/Router.js";
 
 export class RegisterPage {
 
@@ -52,10 +53,17 @@ export class RegisterPage {
     form.addEventListener(EVENTS.SUBMIT, async (event) => {
       event.preventDefault()
 
-      const email = form.querySelector('#email')
-      const password = form.querySelector('#password')
+      const username = form.querySelector('#username').value
+      const email = form.querySelector('#email').value
+      const password = form.querySelector('#password').value
+      const confirmPassword = form.querySelector('#confirmPassword').value
 
-      const res = await userService.login(email.value, password.value)
+      const res = await userService.register(email, username, password, confirmPassword)
+
+      if (res.ok) {
+        userService.setUser(res.message.token, res.message.user)
+        Router.navigateTo('/')
+      }
     })
   }
 }

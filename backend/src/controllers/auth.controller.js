@@ -1,5 +1,5 @@
-import { User } from '../models/user.js'
 import { compareSync, hashSync } from 'bcrypt'
+import { User } from '../models/user.js'
 import { createToken } from '../services/jwt.js'
 
 export class AuthController {

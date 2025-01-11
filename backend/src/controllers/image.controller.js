@@ -1,6 +1,6 @@
 import { PutObjectCommand } from '@aws-sdk/client-s3'
-import { R2Client } from '../config/r2.js'
 import { v4 as uuidv4 } from 'uuid'
+import { R2Client } from '../config/r2.js'
 
 export class ImageController {
   static async upload (req, res) {

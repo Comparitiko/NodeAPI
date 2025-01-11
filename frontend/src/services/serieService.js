@@ -51,7 +51,7 @@ export const serieService = {
 
       if (res.ok) {
         const data = await res.json()
-        return { ok: true, message: data.message }
+        return { ok: true, serie: data.serie }
       }
     } catch (_e) {
       return { ok: false, message: 'Internal server error' }
@@ -97,7 +97,17 @@ export const serieService = {
       })
 
       if (res.ok) {
-        return await res.json()
+        const data = await res.json()
+        return {
+          ok: true,
+          message: {
+            serie: data.serie,
+          }
+        }
+      }
+
+      if (res.status === 404) {
+        return { ok: false, message: 'Serie no encontrada' }
       }
 
     } catch (_e) {
@@ -191,19 +201,22 @@ export const serieService = {
 
     try {
       const formData = new FormData()
-      formData.append('file', file)
+      formData.append('image', file)
 
       const res = await fetch(`${ENVIRONMENT.API_HOST}/api/images/upload`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`
         },
         body: formData
       })
 
       if (res.ok) {
-        return await res.json()
+        const data = await res.json()
+        return {
+          ok: true,
+          message: {...data}
+        }
       }
     } catch (_e) {
       return { ok: false, message: 'Internal server error' }

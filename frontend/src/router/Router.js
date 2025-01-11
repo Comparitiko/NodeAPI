@@ -62,7 +62,7 @@ export class Router {
       const matchResult = matcher(path)
 
       if (matchResult) {
-        // Si se encuentra una coincidencia, retornar la ruta y los parámetros extraídos
+        // If there is a match, return the route and the parameters
         return {
           route,
           params: matchResult.params,

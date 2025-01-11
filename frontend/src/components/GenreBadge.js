@@ -9,7 +9,7 @@ const GenreBadge = (genre) => {
 
   badge.innerHTML = `
     <span 
-    class="inline-block px-3 py-1 text-sm font-semibold mb-1"
+    class="inline-block text-black px-3 py-1 text-sm font-bold mb-1"
     >
       ${firstLetterToUpper(genre)}
     </span>

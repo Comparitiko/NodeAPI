@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import { ImageController } from '../controllers/image.controller.js'
 import multer from 'multer'
+import { ImageController } from '../controllers/image.controller.js'
 
 // URL: /api/images
 

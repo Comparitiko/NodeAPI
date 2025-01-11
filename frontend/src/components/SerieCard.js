@@ -2,7 +2,7 @@
 
 import GenreBadge from './GenreBadge.js'
 
-const SerieCard = (serie) => {
+const SerieCard = (serie, deleteSerie = false) => {
 
   const card = document.createElement('a')
   card.setAttribute('data-router', "")
@@ -39,6 +39,16 @@ const SerieCard = (serie) => {
         
         </div>
       </div>
+      ${deleteSerie ? `
+        <button data-deleteBtn="${serie.id}" class="px-4 py-3 bg-red-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 w-fit m-auto focus:ring-red-300 my-4">
+          Eliminar
+        </button>
+      `
+      : `
+        <button data-voteBtn="${serie.id}" class="px-4 py-3 bg-blue-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 w-fit m-auto focus:ring-blue-300 my-4">
+          Votar
+        </button>
+      `}
     </article>
     `
 
