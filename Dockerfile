@@ -24,7 +24,7 @@ CMD ["node", "./src/index.js"]
 FROM node:22.12.0-alpine AS front-prod-deps
 WORKDIR /app
 COPY frontend/package.json .
-RUN npm install --omit=dev
+RUN npm install
 
 FROM node:22.12.0-alpine AS front-build
 WORKDIR /app
