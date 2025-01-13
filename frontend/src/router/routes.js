@@ -7,6 +7,7 @@ import { SeriesPage } from '../pages/SeriesPage.js'
 import { SeriePage } from '../pages/SeriePage.js'
 import { TopRatedPage } from '../pages/TopRatedPage.js'
 import { SeriesByGenrePage } from '../pages/SeriesByGenrePage.js'
+import { MySeriesPage } from '../pages/MySeriesPage.js'
 
 export const ROUTES = {
   '/': {
@@ -44,6 +45,11 @@ export const ROUTES = {
   '/series/:id': {
     title: 'Series | Series API',
     render: (params) => SeriePage.render(params),
+    requiresAuth: true
+  },
+  '/my-series': {
+    title: 'Mis Series | Series API',
+    render: () => MySeriesPage.render(),
     requiresAuth: true
   },
   '404': {

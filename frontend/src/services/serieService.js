@@ -178,7 +178,7 @@ export const serieService = {
     }
   },
 
-  async deleteOneSeries (id) {
+  async deleteOneSerie (id) {
     const { token } = userService.getUser()
 
     try {
@@ -191,7 +191,8 @@ export const serieService = {
       })
 
       if (res.ok) {
-        return await res.json()
+        const data = await res.json()
+        return { ok: true, message: {...data} }
       }
     } catch (_e) {
       return { ok: false, message: 'Internal server error' }
@@ -219,6 +220,26 @@ export const serieService = {
           ok: true,
           message: {...data}
         }
+      }
+    } catch (_e) {
+      return { ok: false, message: 'Internal server error' }
+    }
+  },
+
+  async getAllByUser () {
+    const { token } = userService.getUser()
+
+    try {
+      const res = await fetch(`${ENVIRONMENT.API_HOST}/api/series/my-series`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+      })
+
+      if (res.ok) {
+        const data = await res.json()
+        return {ok: true, message: {...data}}
       }
     } catch (_e) {
       return { ok: false, message: 'Internal server error' }
