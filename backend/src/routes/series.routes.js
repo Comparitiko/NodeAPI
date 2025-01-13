@@ -14,9 +14,10 @@ router.use(auth)
 // Handle all routes of the series
 router.get('/', SeriesController.getAll)
 router.post('/', validateData(newSerieSchema), SeriesController.create)
-router.put('/:id', validateData(updateSerieRateSchema), SeriesController.updateById)
+router.get('/my-series', SeriesController.getAllByUser)
 router.get('/toprated', SeriesController.getTopRated)
 router.get('/genres/:genre', SeriesController.getAllByGenre)
+router.put('/:id', validateData(updateSerieRateSchema), SeriesController.updateById)
 router.get('/:id', SeriesController.getOneById)
 router.delete('/:id', SeriesController.deleteOneById)
 

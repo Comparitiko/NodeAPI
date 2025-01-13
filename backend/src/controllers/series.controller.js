@@ -123,6 +123,14 @@ export class SeriesController {
 
   static async getOneById (req, res) {
     const { id } = req.params
+
+    // Check if the id is a valid ObjectId
+    if (!Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        message: 'Invalid id'
+      })
+    }
+
     // Get a serie by id
     try {
       const serieById = await Serie.findById(id)
@@ -143,6 +151,14 @@ export class SeriesController {
 
   static async deleteOneById (req, res) {
     const { id } = req.params
+
+    // Check if the id is a valid ObjectId
+    if (!Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        message: 'Invalid id'
+      })
+    }
+
     // Delete a serie by id
     try {
       const serie = await Serie.findByIdAndDelete(id)
@@ -154,6 +170,20 @@ export class SeriesController {
       }
 
       return res.json({ message: 'Serie deleted successfully' })
+    } catch (err) {
+      return res.status(500).json({
+        message: 'Internal server error'
+      })
+    }
+  }
+
+  static async getAllByUser (req, res) {
+    const { user } = req
+
+    try {
+      const seriesByUser = await Serie.find({ userId: user.id })
+
+      return res.json({ series: seriesByUser })
     } catch (err) {
       return res.status(500).json({
         message: 'Internal server error'
