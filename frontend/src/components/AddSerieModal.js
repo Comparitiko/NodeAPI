@@ -1,9 +1,8 @@
 // Error: <p class="text-red-500 text-xs italic">Please choose a password.</p>
 
-import {EVENTS} from "../consts/events.js";
-import {serieService} from "../services/serieService.js";
-import {Router} from "../router/Router.js";
-import SerieCard from "./SerieCard.js";
+import { EVENTS } from '../consts/events.js'
+import { serieService } from '../services/serieService.js'
+import SerieCard from './SerieCard.js'
 
 export const AddSerieModal = (id) => {
   const modal = document.createElement('div')
@@ -138,44 +137,4 @@ export const AddSerieModal = (id) => {
     })
 
     return modal
-}
-
-const checkErrors = (form) => {
-
-  const errors = []
-
-  const title = form.querySelector('#title')
-  if (title.value === '') {
-    title.classList.add('input-error')
-    errors.push({
-      message: 'El título es obligatorio'
-    })
-  }
-
-  const description = form.querySelector('#description')
-  if (description.value === '') {
-    description.classList.add('input-error')
-  }
-
-  const rating = form.querySelector('#rating')
-  if (rating.value === '') {
-    rating.classList.add('input-error')
-  }
-
-  const numOfSeasons = form.querySelector('#numOfSeasons')
-  if (numOfSeasons.value === '') {
-    numOfSeasons.classList.add('input-error')
-  }
-
-  const year = form.querySelector('#year')
-  if (year.value === '') {
-    year.classList.add('input-error')
-  }
-
-  const genres = form.querySelector('#genres')
-  if (genres.value === '') {
-    genres.classList.add('input-error')
-  }
-
-  return errors
 }

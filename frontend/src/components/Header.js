@@ -51,11 +51,11 @@ const Header = () => {
       dropdownMenu.classList.add('hidden')
     })
   })
-
+  
+  // Handle the logout button click event
   header.querySelector('#logout-button').addEventListener(EVENTS.CLICK, () => {
     userService.logout()
     Router.navigateTo('/')
-    Router.init()
   })
 
   return header

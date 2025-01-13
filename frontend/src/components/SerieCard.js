@@ -58,6 +58,7 @@ const SerieCard = (serie, deleteSerie = false) => {
 
   const genresContainer = card.querySelector('.genres-container')
 
+  // Creates GenresBadge components for each genre
   serie.genres.forEach((genre) => {
     genresContainer.appendChild(GenreBadge(genre))
   })
