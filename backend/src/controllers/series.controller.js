@@ -1,5 +1,7 @@
 import { Types } from 'mongoose'
 import { Serie } from '../models/serie.js'
+import { DeleteObjectCommand } from '@aws-sdk/client-s3'
+import { R2Client } from '../config/r2.js'
 
 export class SeriesController {
   static async getAll (req, res) {
@@ -159,9 +161,10 @@ export class SeriesController {
       })
     }
 
-    // Delete a serie by id
+    // Delete a serie_image and serie by serie id
     try {
-      const serie = await Serie.findByIdAndDelete(id)
+      // Get serie info by id
+      const serie = await Serie.findById(id)
 
       if (!serie) {
         return res.status(404).json({
@@ -169,8 +172,24 @@ export class SeriesController {
         })
       }
 
+      // Get serie image name
+      const fileName = serie.image.split('/').pop()
+
+      const deleteParams = {
+        Bucket: process.env.R2_BUCKET_NAME, // Name of the bucket
+        Key: fileName // Name of the file in the bucket
+      }
+
+      // Delete serie image from R2
+      const command = new DeleteObjectCommand(deleteParams)
+      await R2Client.init().send(command)
+
+      // Delete serie from database
+      await Serie.deleteOne({ _id: serie._id })
+
       return res.json({ message: 'Serie deleted successfully' })
     } catch (err) {
+      console.error(err)
       return res.status(500).json({
         message: 'Internal server error'
       })
