@@ -4,18 +4,17 @@ import GenreBadge from './GenreBadge.js'
 
 const SerieCard = (serie, deleteSerie = false) => {
 
-  const card = document.createElement('a')
-  card.setAttribute('data-router', "")
-  card.setAttribute('href', `/series/${serie.id}`)
-  card.className = 'card fit-content hover:bg-gray-800'
+  const card = document.createElement('article')
+  card.setAttribute('data-serie-id', serie.id)
+  card.className = 'card fit-content hover:bg-gray-800 group'
 
   card.innerHTML = `
-      <article>
-      <img class="w-full h-96 object-contain" src="${serie.image}" alt="Serie ${
+      <a data-router href="/series/${serie.id}">
+      <img class="w-full h-96 object-contain transition-all duration-300 group-hover:scale-105" src="${serie.image}" alt="Serie ${
     serie.title
   } Poster">
       <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">${serie.title}</div>
+        <div id="serie-title" class="font-bold text-xl mb-2">${serie.title}</div>
         <p class="text-gray-300 text-base mb-2">${serie.description}</p>
         <p class="text-sm text-gray-300 mb-1">
           <span class="font-semibold">Tipo:</span> 
@@ -39,17 +38,22 @@ const SerieCard = (serie, deleteSerie = false) => {
         
         </div>
       </div>
+      </a>
+      <hr>
       ${deleteSerie ? `
-        <button data-deleteBtn="${serie.id}" class="px-4 py-3 bg-red-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 w-fit m-auto focus:ring-red-300 my-4">
+        <div class="flex justify-center items-center">
+          <button data-deleteBtn="${serie.id}" class="px-4 py-3 bg-red-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 w-fit m-5 focus:ring-red-300 my-4">
           Eliminar
         </button>
+        </div>
       `
       : `
-        <button data-voteBtn="${serie.id}" class="px-4 py-3 bg-blue-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 w-fit m-auto focus:ring-blue-300 my-4">
+        <div class="flex justify-center items-center">
+          <button data-voteBtn="${serie.id}" class="px-4 py-3 bg-blue-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 w-fit m-auto focus:ring-blue-300 my-4">
           Votar
         </button>
+        </div>
       `}
-    </article>
     `
 
   const genresContainer = card.querySelector('.genres-container')
