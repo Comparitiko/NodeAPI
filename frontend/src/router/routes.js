@@ -6,6 +6,7 @@ import { RegisterPage } from '../pages/RegisterPage.js'
 import { SeriesPage } from '../pages/SeriesPage.js'
 import { SeriePage } from '../pages/SeriePage.js'
 import { TopRatedPage } from '../pages/TopRatedPage.js'
+import { SeriesByGenrePage } from '../pages/SeriesByGenrePage.js'
 
 export const ROUTES = {
   '/': {
@@ -37,7 +38,7 @@ export const ROUTES = {
   },
   '/series/genre/:genre': {
     title: 'Series | Series API',
-    render: () => LoginPage.render(),
+    render: (params) => SeriesByGenrePage.render(params),
     requiresAuth: true
   },
   '/series/:id': {

@@ -3,8 +3,14 @@ import { Serie } from '../models/serie.js'
 
 export class SeriesController {
   static async getAll (req, res) {
-    const series = await Serie.find()
-    res.json({ series })
+    try {
+      const series = await Serie.find()
+      res.json({ series })
+    } catch (err) {
+      res.status(500).json({
+        message: 'Internal server error'
+      })
+    }
   }
 
   static async create (req, res) {
