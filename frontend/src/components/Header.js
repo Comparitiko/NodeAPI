@@ -13,6 +13,9 @@ const Header = () => {
               <a data-router href="/" class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
                 Inicio
               </a>
+              <a data-router href="/series/toprated" class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
+                Series mejor valoradas
+              </a>
             </nav>
             
             <div class="relative">
@@ -51,7 +54,7 @@ const Header = () => {
       dropdownMenu.classList.add('hidden')
     })
   })
-  
+
   // Handle the logout button click event
   header.querySelector('#logout-button').addEventListener(EVENTS.CLICK, () => {
     userService.logout()

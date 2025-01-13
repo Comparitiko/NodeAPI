@@ -4,7 +4,8 @@ import { Error404Page } from '../pages/Error404Page.js'
 import { userService } from '../services/userService.js'
 import { RegisterPage } from '../pages/RegisterPage.js'
 import { SeriesPage } from '../pages/SeriesPage.js'
-import {SeriePage} from "../pages/SeriePage.js";
+import { SeriePage } from '../pages/SeriePage.js'
+import { TopRatedPage } from '../pages/TopRatedPage.js'
 
 export const ROUTES = {
   '/': {
@@ -30,8 +31,8 @@ export const ROUTES = {
     requiresAuth: true
   },
   '/series/toprated': {
-    title: 'Series más valoradas | Series API',
-    render: () => LoginPage.render(),
+    title: 'Top 10 Series más valoradas | Series API',
+    render: () => TopRatedPage.render(),
     requiresAuth: true
   },
   '/series/genre/:genre': {

@@ -61,6 +61,7 @@ export class SeriesPage {
     const closeModalBtn = SeriesPage.#rootElement.querySelector('#closeModal')
     const voteSerieModal = SeriesPage.#rootElement.querySelector('#vote-serie-modal')
     const voteBtn = SeriesPage.#rootElement.querySelectorAll('[data-voteBtn]')
+    const closeVoteSerieModal = SeriesPage.#rootElement.querySelector('#closeVoteSerieModal')
 
     newSerieBtn.addEventListener(EVENTS.CLICK, () => {
       modal.classList.remove('hidden');
@@ -68,6 +69,10 @@ export class SeriesPage {
 
     closeModalBtn.addEventListener(EVENTS.CLICK, () => {
       modal.classList.add('hidden')
+    })
+
+    closeVoteSerieModal.addEventListener(EVENTS.CLICK, () => {
+      voteSerieModal.classList.add('hidden')
     })
 
     voteBtn.forEach((btn) => {

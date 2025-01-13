@@ -128,7 +128,8 @@ export const serieService = {
       })
 
       if (res.ok) {
-        return await res.json()
+        const data = await res.json()
+        return { ok: true, message: {...data} }
       }
     } catch (_e) {
       return { ok: false, message: 'Internal server error' }

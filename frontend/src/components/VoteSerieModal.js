@@ -48,8 +48,8 @@ export const VoteSerieModal = (modalId) => {
     const res = await serieService.rate(rating, serieId)
 
     if (res.ok) {
-      // If the series is rated correctly, reload the page usin the router
-      Router.navigateTo('/series')
+      // If the series is rated correctly, reload the page using the router
+      Router.navigateTo(location.pathname)
     } else {
       console.error(res.message)
     }
