@@ -36,7 +36,7 @@ export const ROUTES = {
     render: () => TopRatedPage.render(),
     requiresAuth: true
   },
-  '/series/genre/:genre': {
+  '/series/genres/:genre': {
     title: 'Series | Series API',
     render: (params) => SeriesByGenrePage.render(params),
     requiresAuth: true
