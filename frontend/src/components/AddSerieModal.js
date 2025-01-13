@@ -134,6 +134,15 @@ export const AddSerieModal = (id) => {
         // If there is an error adding the serie, show an error message and return
         console.error(res.message)
       }
+
+      // Clear all the form inputs
+      form.querySelector('#title').value = ''
+      form.querySelector('#rating').value = ''
+      form.querySelector('#description').value = ''
+      form.querySelector('#isMiniSerie').checked = false
+      form.querySelector('#numOfSeasons').value = ''
+      form.querySelector('#year').value = ''
+      form.querySelector('#genres').value = ''
     })
 
     return modal

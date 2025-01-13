@@ -1,9 +1,8 @@
 import { $ } from '../utils/selector.js'
 import Header from '../components/Header.js'
-import {serieService} from "../services/serieService.js";
-import serieCard from "../components/SerieCard.js";
-import {ROUTES} from "../router/routes.js";
-import {firstLetterToUpper} from "../utils/utils.js";
+import { serieService } from '../services/serieService.js'
+import { ROUTES } from '../router/routes.js'
+import { firstLetterToUpper } from '../utils/utils.js'
 
 export class SeriePage {
 
@@ -15,7 +14,7 @@ export class SeriePage {
 
     const res = await serieService.getSerieById(params.id)
 
-    if (!res.ok) {
+    if (!res || !res.ok) {
       return ROUTES['404'].render()
     }
 

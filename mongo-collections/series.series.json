@@ -1,0 +1,245 @@
+[{
+  "_id": {
+    "$oid": "6782a45ec124a6b7f5d19d97"
+  },
+  "title": "Padre de familia",
+  "description": "Serie de TV. Conocida por su humor negro e irreverente, la serie gira en torno a las aventuras de Peter Griffin y su disfuncional familia. Peter trabaja en una fábrica de juguetes; es irresponsable y juerguista. Lois es ama de casa y profesora de piano. Tienen tres hijos: Chris, un muchacho algo lento que lleva un artista en su interior; Megan, una adolescente con problemas de integración en la escuela; y Stewie, un bebé diabólico que sueña con conquistar el mundo. También vive con ellos Brian, un perro sumamente inteligente que se comporta como un humano. Otros personajes habituales son Joe, un expolicía parapléjico; Cleveland, un amigo de Peter; y Quagmire, un soltero obsesionado por el sexo.",
+  "userRating": 5,
+  "isMiniSerie": false,
+  "numOfSeasons": 21,
+  "year": 1999,
+  "genres": [
+    "animación",
+    "comedia"
+  ],
+  "totalRatingCount": 5,
+  "image": "https://static.comparitiko.dev/3c29b1b3-5412-4bb8-960c-77b0437eb820.webp",
+  "totalVotes": 1,
+  "userId": {
+    "$oid": "677abc7642ed126a84741caa"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678539ed942d5842a6d0db11"
+  },
+  "title": "Bandidos",
+  "description": "Bandidos es una serie de televisión de aventura, acción y comedia mexicana-estadounidense, dirigida por Adrian Grünberg y Javier Ruiz Caldera, producida por Stacy Perskie, escrita por Pablo Tébar y protagonizada por Ester Expósito, Alfonso Dosal, Juan Pablo Medina, Mabel Cadena, Andrés Baida, Andrea Chaparro, Luis Gerardo Méndez, Sarah Nichols, Nicolás Furtado, Bruno Bichir y Lindsay Rodríguez Canul.",
+  "userRating": 4,
+  "isMiniSerie": true,
+  "numOfSeasons": 2,
+  "year": 2023,
+  "genres": [
+    "accion",
+    "aventura"
+  ],
+  "totalRatingCount": 4,
+  "image": "https://static.comparitiko.dev/6008959c-6749-4433-b2a4-187f7aaf7936.jpg",
+  "totalVotes": 1,
+  "userId": {
+    "$oid": "677abc7642ed126a84741caa"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67853b2e942d5842a6d0db30"
+  },
+  "title": "Los simpsons",
+  "description": "Serie de TV. Narra la historia de una peculiar familia (Homer, Marge, Bart, Maggie y Lisa Simpson) y otros divertidos personajes de la localidad norteamericana de Springfield. Homer, el padre, es un desastroso inspector de seguridad de una central nuclear. Marge, la madre, es un ama de casa acostumbrada a soportar a su peculiar familia. Bart, de 10 años, intenta divertirse con travesuras de todo tipo. Lisa es la más inteligente de la familia, y Maggie, la más pequeña, es un bebé que todavía no habla, pero que juega un importante papel.",
+  "userRating": 4,
+  "isMiniSerie": false,
+  "numOfSeasons": 36,
+  "year": 1989,
+  "genres": [
+    "animacion",
+    "comedia",
+    "sátira"
+  ],
+  "totalRatingCount": 4,
+  "image": "https://static.comparitiko.dev/59988325-e300-4b77-9b06-c09c4c38ff13.jpg",
+  "totalVotes": 1,
+  "userId": {
+    "$oid": "677abc7642ed126a84741caa"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67853b9a942d5842a6d0db38"
+  },
+  "title": "La que se avecina",
+  "description": "Tras el enorme éxito en Antena 3 de la serie \"Aquí no hay quien viva\", que narraba la vida y milagros de los miembros de una comunidad de vecinos, Tele 5 contrató a muchos de los actores e hizo una serie de formato y argumento semejante sobre los variopintos vecinos de Mirador de Montepinar, un complejo residencial situado en la periferia de una gran ciudad. Entre ellos destacan una familia caótica, unos recién casados, una \"Bridget Jones\" española, el \"pesado oficial\" del vecindario, dos prejubilados, un antisocial, un mileurista, un galán de telenovela, dos okupas y un matrimonio con niños.",
+  "userRating": 5,
+  "isMiniSerie": false,
+  "numOfSeasons": 15,
+  "year": 2007,
+  "genres": [
+    "comedia"
+  ],
+  "totalRatingCount": 9,
+  "image": "https://static.comparitiko.dev/28de84ea-9fc7-482d-a5e0-58dd2a6fe77b.jpg",
+  "totalVotes": 2,
+  "userId": {
+    "$oid": "677abc7642ed126a84741caa"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67853c07942d5842a6d0db3b"
+  },
+  "title": "2 Hombres y medio",
+  "description": "Charlie Harper (Charlie Sheen) es un soltero con dinero que tiene una casa en la playa y gran éxito con las mujeres. Pero su informal estilo de vida en Malibú se ve bruscamente interrumpido cuando su hermano Alan (Jon Cryer), muy deprimido por su divorcio, y su hijo Jake (Angus T. Jones), llegan para quedarse a vivir con él. La situación se complica aún más gracias a Evelyn (Holland Taylor), la egocéntrica y controladora madre de Charlie y Alan y a la mujer de Alan (Marin Hinkle), de la que se está separando y que posiblemente sea lesbiana. Además, está Berta (Conchata Ferrell), la dominante ama de llaves de Charlie. A pesar de la complejidad de sus vidas y de sus tensas relaciones, Charlie y Alan tienen una cosa en común: adoran a Jake y quieren lo mejor para él. ",
+  "userRating": 4,
+  "isMiniSerie": false,
+  "numOfSeasons": 12,
+  "year": 2003,
+  "genres": [
+    "comedia",
+    "sitcom"
+  ],
+  "totalRatingCount": 4,
+  "image": "https://static.comparitiko.dev/52c7c638-a437-4b5c-9ef5-8d88942dd0e1.jpg",
+  "totalVotes": 1,
+  "userId": {
+    "$oid": "677abc7642ed126a84741caa"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67853ce4942d5842a6d0db47"
+  },
+  "title": "Culpa tuya",
+  "description": "El amor entre Noah y Nick parece inquebrantable, a pesar de las maniobras de sus padres por separarles. Pero el trabajo de él y la entrada de ella en la universidad, abre sus vidas a nuevas relaciones. La aparición de una exnovia que busca venganza y de la madre Nick con intenciones poco claras, removerán los cimientos no solo de su relación, sino de la propia familia Leister. Cuando tantas personas están dispuestas a destruir una relación, ¿puede realmente acabar bien?\n",
+  "userRating": 3,
+  "isMiniSerie": true,
+  "numOfSeasons": 1,
+  "year": 2024,
+  "genres": [
+    "romace"
+  ],
+  "totalRatingCount": 7,
+  "image": "https://static.comparitiko.dev/17f0c53a-f4b3-428a-9d50-230c0e569425.jpg",
+  "totalVotes": 2,
+  "userId": {
+    "$oid": "677abc7642ed126a84741caa"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67853e31942d5842a6d0db62"
+  },
+  "title": "la plataforma",
+  "description": "Ambientada en la plataforma petrolera Kinloch Bravo, ubicada frente a la costa escocesa en las peligrosas aguas del Mar del Norte. Cuando la tripulación debe regresar al continente, una niebla misteriosa y envolvente se abre paso y se encuentran aislados de toda comunicación con la costa y el mundo exterior.",
+  "userRating": 3,
+  "isMiniSerie": true,
+  "numOfSeasons": 2,
+  "year": 2023,
+  "genres": [
+    "thriller",
+    "drama",
+    "intriga"
+  ],
+  "totalRatingCount": 3,
+  "image": "https://static.comparitiko.dev/c24efd65-5ab1-4b3c-80a7-f44d3fc5c411.jpg",
+  "totalVotes": 1,
+  "userId": {
+    "$oid": "677abc7642ed126a84741caa"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67853eda942d5842a6d0db65"
+  },
+  "title": "El juego del calamar",
+  "description": "Cientos de jugadores con problemas económicos aceptan una extraña invitación para competir en juegos infantiles. Dentro les esperan un premio tentador y desafíos letales.",
+  "userRating": 4,
+  "isMiniSerie": false,
+  "numOfSeasons": 2,
+  "year": 2020,
+  "genres": [
+    "thriller",
+    "intriga",
+    "supervivencia"
+  ],
+  "totalRatingCount": 7,
+  "image": "https://static.comparitiko.dev/f837aa24-2d75-407d-bfc8-c9793fd40ba4.jpg",
+  "totalVotes": 2,
+  "userId": {
+    "$oid": "677abc7642ed126a84741caa"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67853fa1942d5842a6d0db81"
+  },
+  "title": "La zona",
+  "description": "El inspector de policía Héctor Uría (Eduard Fernández) regresa al servicio, tres años después del grave accidente de un reactor nuclear en el norte de España, como el único superviviente del primer grupo que acudió en socorro de la central. Ahora debe investigar el brutal asesinato de un hombre en la zona de exclusión.",
+  "userRating": 3,
+  "isMiniSerie": false,
+  "numOfSeasons": 1,
+  "year": 2017,
+  "genres": [
+    "thriller",
+    "intriga"
+  ],
+  "totalRatingCount": 4,
+  "image": "https://static.comparitiko.dev/69fd6e9a-d335-4f5f-a81f-f1da2765d7f9.jpg",
+  "totalVotes": 2,
+  "userId": {
+    "$oid": "6782a2d0c124a6b7f5d19d7b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67853ffc942d5842a6d0db88"
+  },
+  "title": "Mano de hierro",
+  "description": "El puerto marítimo de Barcelona recibe casi 6.000 containers al día. Mercancías procedentes de todo el mundo que, en un solo año, pueden ocultar más de 30.000 kg de cocaína, convirtiendo la ciudad en una de las puertas de entrada más importantes de Europa en el negocio del narcotráfico. Joaquín Manchado es propietario de la principal terminal del puerto de Barcelona. Si alguien quiere usar el puerto para importar una carga ilegal debe contar con su colaboración y con el apoyo de toda la red criminal que se ha conformado a su alrededor. Sin embargo, un inesperado accidente y la desaparición de un importante cargamento de droga desencadenará una despiadada guerra plagada de asesinatos y venganzas.",
+  "userRating": 4,
+  "isMiniSerie": true,
+  "numOfSeasons": 1,
+  "year": 2023,
+  "genres": [
+    "thriller",
+    "drama",
+    "accion",
+    "drogas"
+  ],
+  "totalRatingCount": 4,
+  "image": "https://static.comparitiko.dev/25433898-4926-40d7-9b45-82a34dd65283.jpg",
+  "totalVotes": 1,
+  "userId": {
+    "$oid": "6782a2d0c124a6b7f5d19d7b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67854148942d5842a6d0db8b"
+  },
+  "title": "Machos alfa",
+  "description": "La abolición del patriarcado se acerca. En plena crisis de la masculinidad, cuatro amigos cuarentones están perdiendo su trono, privilegios e identidad. Años atrás habrían sido machos alfa al mando de sus relaciones, su trabajo y su vida... pero les ha tocado vivir en la era de la igualdad, en una sociedad con nuevas reglas que los golpea exponiendo su patetismo.",
+  "userRating": 3,
+  "isMiniSerie": false,
+  "numOfSeasons": 3,
+  "year": 2022,
+  "genres": [
+    "comedia",
+    "amistad"
+  ],
+  "totalRatingCount": 3,
+  "image": "https://static.comparitiko.dev/da63338e-9031-4de9-b330-a4e6d26529ee.jpg",
+  "totalVotes": 1,
+  "userId": {
+    "$oid": "6782a2d0c124a6b7f5d19d7b"
+  },
+  "__v": 0
+}]

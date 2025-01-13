@@ -4,6 +4,7 @@ import { VoteSerieModal } from '../components/VoteSerieModal.js'
 import { serieService } from '../services/serieService.js'
 import SerieCard from '../components/SerieCard.js'
 import { EVENTS } from '../consts/events.js'
+import { ROUTES } from '../router/routes.js'
 
 export class SeriesByGenrePage {
 
@@ -43,9 +44,12 @@ export class SeriesByGenrePage {
     const seriesByGenre = await serieService.getAllSeriesByGenre(genre)
 
     if (seriesByGenre.ok) {
+      if (seriesByGenre.message.series.length === 0) return ROUTES['404'].render()
       seriesByGenre.message.series.forEach(serie => {
         seriesList.append(SerieCard(serie))
       })
+    } else {
+      ROUTES['404'].render()
     }
   }
 

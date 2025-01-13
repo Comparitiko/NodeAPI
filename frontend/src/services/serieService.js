@@ -91,7 +91,6 @@ export const serieService = {
       const res = await fetch(`${ENVIRONMENT.API_HOST}/api/series/${serieId}`, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
       })
