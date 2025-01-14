@@ -96,9 +96,23 @@ export class SeriesController {
   }
 
   static async getTopRated (req, res) {
-    // Get the top 10 rated series
+    // Get the top 10 rated series ordered by (total rating / total votes)
     try {
-      const seriesTopRated = await Serie.find().sort({ rating: -1 }).limit(10)
+      const seriesTopRated = await Serie.aggregate([
+        {
+          $addFields: {
+            calculatedRating: {
+              $cond: [
+                { $eq: ['$totalVotes', 0] }, // If there are no votes, the rating is 0
+                0,
+                { $divide: ['$totalRatingCount', '$totalVotes'] }
+              ]
+            }
+          }
+        },
+        { $sort: { calculatedRating: -1 } }, // Sort by calculated rating
+        { $limit: 10 }
+      ])
 
       return res.json({ series: seriesTopRated })
     } catch (err) {
