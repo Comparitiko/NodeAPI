@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.input-error {
-  @apply border-red-500 text-red-500 focus:border-red-500 focus:ring-red-500;
-}
-
 .error-text {
   @apply text-red-500 text-sm mb-2
 }
