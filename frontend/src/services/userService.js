@@ -74,7 +74,7 @@ export const userService = {
       if (!res.ok) {
         if (res.status === 400) {
           const data = await res.json()
-          return { ok: false, message: {...data} }
+          return { ok: false, message: data.message }
         }
       }
 
