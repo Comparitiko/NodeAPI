@@ -59,6 +59,7 @@ export const AddSerieModal = (id) => {
                       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="genres" placeholder="Drama, Comedia, Acción, Aventura..." type="text" required>
                     </div>
                     <div class="mt-4 flex flex-col items-center justify-center">
+                      <p id="file-upload-name" class="text-black"></p>
                       <label
                         for="file-upload"
                         class="relative cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
@@ -96,6 +97,15 @@ export const AddSerieModal = (id) => {
       `
 
     // Setup the events listeners for the modal
+    const fileInput = modal.querySelector('#file-upload')
+
+    fileInput.addEventListener('change', async (event) => {
+      const image = event.target.files[0]
+
+      form.querySelector('#file-upload-name').innerText = image.name
+    })
+
+
     const form = modal.querySelector('#new-serie-form')
     form.addEventListener(EVENTS.SUBMIT, async (event) => {
       event.preventDefault()
