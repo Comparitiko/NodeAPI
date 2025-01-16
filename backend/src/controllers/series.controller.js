@@ -114,8 +114,23 @@ export class SeriesController {
         { $limit: 10 }
       ])
 
-      return res.json({ series: seriesTopRated })
+      // Create a new Serie object without _id and __v
+      const seriesTopRatedJSON = seriesTopRated.map((serie) => {
+        const serieJSON = {
+          ...serie,
+          id: serie._id
+        }
+
+        delete serieJSON._id
+        delete serieJSON.__v
+        return serieJSON
+      })
+
+      console.log(seriesTopRatedJSON)
+
+      return res.json({ series: seriesTopRatedJSON })
     } catch (err) {
+      console.log(err)
       return res.status(500).json({
         message: 'Internal server error'
       })

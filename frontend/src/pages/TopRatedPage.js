@@ -58,7 +58,6 @@ export class TopRatedPage {
     voteBtns.forEach((btn) => {
       btn.addEventListener(EVENTS.CLICK, async (e) => {
         const card = e.target.closest('.card')
-        console.log(card)
         const serie = {
           id: card.getAttribute('data-serie-id'),
           title: card.querySelector('#serie-title').innerText
